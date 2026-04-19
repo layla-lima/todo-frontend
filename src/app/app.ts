@@ -47,4 +47,9 @@ UPDATE_tarefa(tarefaAserModificada: Tarefa) {
 
 }
 
+TOGGLE_tarefa(tarefa: Tarefa) {
+  tarefa.statusRealizada = !tarefa.statusRealizada;
+  this.UPDATE_tarefa(tarefa);
+}
+
 }

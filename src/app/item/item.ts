@@ -13,4 +13,9 @@ export class Item {
  @Input() tarefa: Tarefa = new Tarefa("", false);
  @Output() removeTarefa = new EventEmitter();
  @Output() modificaTarefa = new EventEmitter();
+
+ toggleConcluida() {
+  this.tarefa.statusRealizada = !this.tarefa.statusRealizada;
+  this.modificaTarefa.emit(); 
+}
 }
