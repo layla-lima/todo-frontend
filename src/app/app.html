@@ -7,7 +7,7 @@ Laysa da Silva Lima - RA 250467
  <button class="btn-primary" (click)="CREATE_tarefa(campoNovoItem.value)">
  Adicionar Tarefa</button>
  <ul>
- <li *ngFor="let tarefaDoLoop of arrayDeTarefas()">
+ <li *ngFor="let tarefaDoLoop of arrayDeTarefas(); trackBy: trackById">
 <app-item [tarefa]="tarefaDoLoop" (removeTarefa)="DELETE_tarefa(tarefaDoLoop)" (modificaTarefa)="UPDATE_tarefa(tarefaDoLoop)"></app-item>
  </li>
  </ul>

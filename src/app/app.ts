@@ -26,30 +26,40 @@ CREATE_tarefa(descricaoNovaTarefa: string) {
 }
 
 UPDATE_tarefa(tarefaAserModificada: Tarefa) {
- var indice = this.arrayDeTarefas().indexOf(tarefaAserModificada);
- var id = this.arrayDeTarefas()[indice]._id;
- this.http.patch<Tarefa>(`${this.apiURL}/api/update/${id}`,
- tarefaAserModificada).subscribe(
- resultado => { console.log(resultado); this.READ_tarefas(); });
- }
+  var id = tarefaAserModificada._id;
+
+  this.http.patch<Tarefa>(`${this.apiURL}/api/update/${id}`,
+    tarefaAserModificada).subscribe(
+      resultado => {
+        console.log(resultado);
+        this.READ_tarefas();
+      });
+}
  
 
  READ_tarefas() {
   this.http.get<Tarefa[]>(`${this.apiURL}/api/getAll`).subscribe(
-  resultado => this.arrayDeTarefas.set(resultado))
- }
+    resultado => this.arrayDeTarefas.set([...resultado])
+  )
+}
 
- DELETE_tarefa(tarefaAserRemovida : Tarefa) {
- var indice = this.arrayDeTarefas().indexOf(tarefaAserRemovida);
- var id = this.arrayDeTarefas()[indice]._id;
- this.http.delete<Tarefa>(`${this.apiURL}/api/delete/${id}`).subscribe(
- resultado => { console.log(resultado); this.READ_tarefas(); });
+ DELETE_tarefa(tarefaAserRemovida: Tarefa) {
+  var id = tarefaAserRemovida._id;
 
+  this.http.delete<Tarefa>(`${this.apiURL}/api/delete/${id}`).subscribe(
+    resultado => {
+      console.log(resultado);
+      this.READ_tarefas();
+    });
 }
 
 TOGGLE_tarefa(tarefa: Tarefa) {
   tarefa.statusRealizada = !tarefa.statusRealizada;
   this.UPDATE_tarefa(tarefa);
+}
+
+trackById(index: number, tarefa: Tarefa) {
+  return tarefa._id;
 }
 
 }
