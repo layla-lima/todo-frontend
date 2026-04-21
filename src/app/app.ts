@@ -16,7 +16,7 @@ export class App {
   apiURL : string;
 
  constructor(private http: HttpClient) {
-  this.apiURL = 'https://todo-backend-ij9z.onrender.com';
+  this.apiURL = 'https://apitarefaslayla250463laysa250467.onrender.com';
   this.READ_tarefas();
  }
 CREATE_tarefa(descricaoNovaTarefa: string) {
